@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${name}">h1大标题</h1>
+
+<h1 th:text="${hero.getCust_phone()}">h1大标题</h1>
+<hr>
+
+<div th:object="${hero}">
+    <p th:text="*{cust_name}"></p>
+    <p th:text="*{cust_phone}"></p>
+    <p th:text="*{email}"></p>
+</div>
+<hr>
+
+<a th:src="@{http://www.yansvip.com}">赵公子</a>
+<img th:src="@{/IMG_0173.JPG}">
+<img th:src="@{~/IMG_0173.JPG}">
+</body>
+</html>

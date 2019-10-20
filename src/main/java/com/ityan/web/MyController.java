@@ -31,8 +31,8 @@ public class MyController {
         hero.setCust_phone("123425345");
         hero.setEmail("123515@123.com");
         model.addAttribute("hero",hero);
-
-        model.addAttribute("name","ityan");
+        model.addAttribute("allHero",allHero);
+        model.addAttribute("name","<h1>ityan<h1>");
         return "MyHello";
     }
 }

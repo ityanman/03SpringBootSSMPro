@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .red{
+            color: red;
+            font-size: 50px;
+        }
+    </style>
 </head>
 <body>
 <h1 th:text="${name}">h1大标题</h1>
@@ -10,15 +16,91 @@
 <h1 th:text="${hero.getCust_phone()}">h1大标题</h1>
 <hr>
 
-<div th:object="${hero}">
+<!--Thymeleaf基本使用-->
+<!--<div th:object="${hero}">
     <p th:text="*{cust_name}"></p>
     <p th:text="*{cust_phone}"></p>
     <p th:text="*{email}"></p>
 </div>
 <hr>
 
-<a th:src="@{http://www.yansvip.com}">赵公子</a>
+Thymeleaf链接地址与参数传递
+<a th:href="@{http://www.yansvip.com}">赵公子</a>
 <img th:src="@{/IMG_0173.JPG}">
 <img th:src="@{~/IMG_0173.JPG}">
+<a th:href="@{/hello(id=2,action='zy')}">参数传递</a>-->
+
+<!--Thymeleaf字面值与字符串拼接-->
+<!--<h1 th:text="|hello|"></h1>
+<h1 th:text="|zhaoyan${hero.getCust_phone()}|"></h1>
+<h1 th:text="${1==2}"></h1>
+<h1 th:text="${20+34}"></h1>-->
+
+<!--Thymeleaf表达式-->
+<!--算数运算符-->
+<!--<h1 th:text="1+2"></h1>
+<h1 th:text="10%3-1"></h1>
+<h1 th:text="3*3"></h1>-->
+<!--比较运算符    >和<不能直接使用 要用gt、lt代替   >=用ge-->
+<!--<h1 th:text="1 gt 2"></h1>
+<h1 th:text="1 lt 2"></h1>
+<h1 th:text="1 le 2"></h1>
+<h1 th:text="1 ge 2"></h1>-->
+<!--三元运算符-->
+<!--<h1 th:text="1 lt 2?'真' : '假'"></h1>-->
+<!--默认表达式-->
+<!--<h1 th:text="${hero.getCust_name()}?:'我是空值'"></h1>-->
+
+<!--内联写法-->
+<!--[[${name}]]
+[(${name})]-->
+<!--局部变量-->
+<!--<div th:with="heroN=${allHero[0]}">
+<p th:text="${heroN.getCust_phone()}"></p>
+<p th:text="${heroN.getCust_name()}"></p>
+</div>-->
+
+<!--if判断-->
+<!--<h1 th:if="1 lt 2">内容</h1>-->
+<!--unless判断     与if相反-->
+<!--<h1 th:unless="1 lt 2">内容</h1>-->
+<!--switch-->
+<!--<div th:switch="${name}">
+    <p th:case="ityan">ityan</p>
+    <p th:case="2">显示2</p>
+    <p th:case="3">显示ityan</p>
+    <p th:case="*">都不是</p>
+</div>-->
+
+<!--Thymeleaf迭代-->
+<!--<div th:each="heroItem,stat:${allHero}">
+ <span th:text="${heroItem.getCust_name()}"></span>
+    <span th:text="${heroItem.getCust_phone()}"></span>
+    <span th:text="${stat.index}"></span>&ndash;&gt;    &lt;!&ndash;当前遍历的角标  从0开始&ndash;&gt;
+    <span th:text="${stat.count}"></span>&lt;!&ndash;当前遍历到第几个  从1开始&ndash;&gt;
+    <span th:text="${stat.first}"></span>&lt;!&ndash;当前遍历的元素是否是第一个&ndash;&gt;
+    <span th:text="${stat.last}"></span>&lt;!&ndash;当前遍历的元素是否是最后一个&ndash;&gt;
+    <span th:text="${stat.size}"></span>&lt;!&ndash;元素总数&ndash;&gt;
+    <span th:text="${stat.even}"></span>  &lt;!&ndash;判断当前行是否是偶数行&ndash;&gt;
+    <span th:text="${stat.odd}"></span>  &lt;!&ndash;判断当前行是 否是奇数行&ndash;&gt;
+   &lt;!&ndash; <span th:text="${stat.current}"></span> &ndash;&gt; &lt;!&ndash;当前遍历出的对象信息&ndash;&gt;
+</div>-->
+
+<!--内置对象-->
+<!--<div th:each="heroItem,stat:${allHero}">
+    <span th:text="${heroItem.getCust_name()}"></span>
+    <span th:text="${heroItem.getCust_phone()}"></span>
+    <span th:text="${#dates.format(heroItem.getOnlinetime(),'yyyy-MM-dd')}"></span>
+</div>
+<p th:text="${#strings.toUpperCase(name)}"></p>
+<p th:text="${#strings.abbreviate(name,5)}">  -->
+
+<!--引入片段   3种方式-->
+<!--头部-->
+<!--<div th:insert="~{base::header}"></div>--><!--将公共标签插入到指定标签当中-->
+<!--<h1>中部</h1>-->
+<div th:replace="~{base::#footer}"></div><!--将公共的标签替换指定标签-->
+<div th:include="~{base::#footer(active='footer')}"></div><!--将公共标签的内容包含到指定标签中-->
+
 </body>
 </html>
